@@ -31,7 +31,6 @@ public class DeleteActivity extends AppCompatActivity {
 
         for (Bird bird : birdies) {
             RadioButton rb = new RadioButton(this);
-            rb.setId(bird.getId());
             rb.setText(bird.toString());
             group.addView(rb);
         } // End for bird.

@@ -14,19 +14,30 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+/**
+ *    Class:  InsertActivity
+ *
+ *    @author Ben Lane
+ *    @author Jinhong Yao
+ *
+ *    Activity that allows user to insert a new bird sighting into the database.
+ */
 public class InsertActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private DatabaseManager dbManager;
-    private Spinner spinner;
-    private String timeStr;
-    private String dateStr;
-    private DatePickerDialog picker;
+    private DatabaseManager dbManager;  // database manager
+    private Spinner spinner;            // list of times of day
+    private String timeStr;             // time of day for sighting
+    private String dateStr;             // date of sighting
+    private DatePickerDialog picker;    // date of sighting picker
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Make a new database manager.
         dbManager = new DatabaseManager(this);
         setContentView(R.layout.activity_insert);
 
+        // Set up time-of-day spinner.
         spinner = findViewById(R.id.spinnerTime);
         ArrayAdapter<CharSequence> timeAdapter = ArrayAdapter.createFromResource(
                 this, R.array.time,
@@ -34,16 +45,19 @@ public class InsertActivity extends AppCompatActivity implements AdapterView.OnI
         spinner.setAdapter(timeAdapter);
         spinner.setOnItemSelectedListener(this);
 
+        // Set up date picker.
         final EditText etDate = findViewById(R.id.editTextDate);
         etDate.setInputType(InputType.TYPE_NULL);
         etDate.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
+                final Calendar cldr = Calendar.getInstance();   // calendar for picking when a sighting occurred.
                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
-                // date picker dialog
+
+                // Date picker dialog.
                 picker = new DatePickerDialog(InsertActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -57,6 +71,12 @@ public class InsertActivity extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
+    /**
+     * Method for inserting bird sighting.
+     *
+     * @param v The view of the current activity.
+     *
+     */
     public void insert(View v) {
         EditText etName, etPrice, etWeather;
         String nameStr, priceStr, weatherStr;

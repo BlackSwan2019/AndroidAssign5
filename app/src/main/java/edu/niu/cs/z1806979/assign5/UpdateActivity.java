@@ -50,6 +50,7 @@ public class UpdateActivity extends AppCompatActivity {
             ids[i] = new TextView(this);
             ids[i].setGravity(Gravity.CENTER);
             ids[i].setText("" + bird.getId());
+
             // Create EditText for name and price.
             namesAndPrices[i][0] = new EditText(this);
             namesAndPrices[i][1] = new EditText(this);
@@ -61,12 +62,14 @@ public class UpdateActivity extends AppCompatActivity {
             namesAndPrices[i][0].setId(10 * bird.getId());
             namesAndPrices[i][1].setId(10 * bird.getId() + 1);
             namesAndPrices[i][2].setId(10 * bird.getId() + 2);
+
             btns[i] = new Button(this);
             btns[i].setText("Update");
             btns[i].setId(bird.getId());
             btns[i].setOnClickListener(bh);
+
             // Add each element to the grid.
-            // 10 % for ID, 40% for the name, 15% for the price, and 35% for the button.
+            // 30% for the type, 20% for the quantity, 30% for date, and 20% for the button.
             gridLayout.addView(namesAndPrices[i][0], (int) (width * .30), ViewGroup.LayoutParams.WRAP_CONTENT);
             gridLayout.addView(namesAndPrices[i][1], (int) (width * .20), ViewGroup.LayoutParams.WRAP_CONTENT);
             gridLayout.addView(namesAndPrices[i][2], (int) (width * .30), ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -91,6 +94,7 @@ public class UpdateActivity extends AppCompatActivity {
             String name = nameET.getText().toString();
             String priceStr = priceET.getText().toString();
             String weatherStr = weatherET.getText().toString();
+
             // Update the database.
             try {
                 double price = Double.parseDouble(priceStr);
@@ -98,7 +102,7 @@ public class UpdateActivity extends AppCompatActivity {
                 Toast.makeText(UpdateActivity.this, "Bird updated", Toast.LENGTH_LONG).show();
                 updateView();
             } catch (NumberFormatException e) {
-                Toast.makeText(UpdateActivity.this, "Price is not valid.", Toast.LENGTH_LONG).show();
+                Toast.makeText(UpdateActivity.this, "Quantity is not valid.", Toast.LENGTH_LONG).show();
             }
         }
     }

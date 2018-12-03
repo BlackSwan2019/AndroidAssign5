@@ -1,57 +1,69 @@
+/**
+ *    Program:        Bird sighting tracker.
+ *
+ *    Purpose:        Records bird sightings, keeping track of bird type, quantity seen, time of day,
+ *                    date, time, weather, and temperature.
+ *
+ *    Programmers:    Ben Lane    z1806979
+ *                    Jinhong Yao z1785700
+ *
+ *    Due Date:       December 5, 2018
+ */
+
 package edu.niu.cs.z1806979.assign5;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
+
+/**
+ *    Class:  MainActivity
+ *
+ *    @author Ben Lane
+ *    @author Jinhong Yao
+ *
+ *    Activity that allows user to click a button to go to a specific task concerning the bird sightings.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    /**
+     * Method that initiates the activity to add a bird sighting.
+     *
+     * @param v The view of the current activity.
+     *
+     */
+    public void goAdd(View v) {
+        Intent i = new Intent(this, InsertActivity.class);
+        startActivity(i);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        Intent i;
+    /**
+     * Method that initiates the activity to delete a sighting..
+     *
+     * @param v The view of the current activity.
+     *
+     */
+    public void goDelete(View v) {
+        Intent i = new Intent(this, DeleteActivity.class);
+        startActivity(i);
+    }
 
-        //noinspection SimplifiableIfStatement
-        switch(id) {
-            case R.id.add_item:
-                i = new Intent(this, InsertActivity.class);
-                startActivity(i);
-                return true;
-            case R.id.delete_item:
-                i = new Intent(this, DeleteActivity.class);
-                startActivity(i);
-                return true;
-            case R.id.update_item:
-                i = new Intent(this, UpdateActivity.class);
-                startActivity(i);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        } // End switch.
+    /**
+     * Method that initiates the activity to update a sighting..
+     *
+     * @param v The view of the current activity.
+     *
+     */
+    public void goUpdate(View v) {
+        Intent i = new Intent(this, UpdateActivity.class);
+        startActivity(i);
     }
 }

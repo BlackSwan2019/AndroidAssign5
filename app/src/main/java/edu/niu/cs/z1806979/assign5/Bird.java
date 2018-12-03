@@ -1,13 +1,32 @@
 package edu.niu.cs.z1806979.assign5;
 
+/**
+ *    Class:  Bird
+ *
+ *    @author Ben Lane
+ *    @author Jinhong Yao
+ *
+ *    Bird sighting model. Contains all the data of a single bird sighting.
+ */
 public class Bird {
-    private int id;
-    private String type;
-    private double quantity;
-    private String time;
-    private String date;
-    private String weather;
+    private int id;             // Sighting ID.
+    private String type;        // Type of bird.
+    private double quantity;    // Number of birds seen.
+    private String time;        // Time of the sighting.
+    private String date;        // Date of the sighting.
+    private String weather;     // Weather during the sighting.
 
+    /**
+     * Constructor method for the bird class.
+     *
+     * @param id        ID of bird
+     * @param type      type of bird
+     * @param quantity  number of birds seen in the sighting
+     * @param time      time of day (morning, afternoon, evening)
+     * @param date      what day the sighting occurred
+     * @param weather   weather during the sighting
+     *
+     */
     public Bird(int id, String type, double quantity, String time, String date, String weather) {
         this.id = id;
         this.type = type;
@@ -59,17 +78,12 @@ public class Bird {
         this.date = date;
     }
 
+    public String getWeather() { return weather; }
 
-    public String getWeather() {
-        return weather;
-    }
-
-    public void setWeather(String weather) {
-        this.weather = weather;
-    }
+    public void setWeather(String weather) { this.weather = weather; }
 
     public String toString() {
-        return id + " " + type + " " + quantity + " " + time + " " + date + " " + weather;
+        return type + " " + quantity + " " + time + " " + date + " " + weather;
     }
 }
 
